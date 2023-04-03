@@ -1,4 +1,4 @@
-const imagelist = [
+const cities = [
     {
       name: "bali",
       url: "https://images.pexels.com/photos/5992583/pexels-photo-5992583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -25,4 +25,4 @@ const imagelist = [
     },
   ];
 
-  export default imagelist;
+  export default cities;

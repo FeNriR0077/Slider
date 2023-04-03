@@ -1,18 +1,19 @@
 import { useState } from 'react';
+import {PropTypes} from "prop-types"
 import SliderIndex from './SliderIndex';
 
 function Slider(props) {
-  const { imagelist } = props;
+  const { cities } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleLeftArrow = () => {
     const firstimage = currentIndex === 0;
-    const newIndex = firstimage ? imagelist.length - 1 : currentIndex - 1;
+    const newIndex = firstimage ? cities.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const handleRightArrow = () => {
-    const lastimage = currentIndex === imagelist.length - 1;
+    const lastimage = currentIndex === cities.length - 1;
     const newIndex = lastimage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
@@ -23,9 +24,9 @@ function Slider(props) {
 
   return (
     <div className="slider-container">
-      <div style={{ backgroundImage: `url(${imagelist[currentIndex].url})` }} className="display-image">
+      <div style={{ backgroundImage: `url(${cities[currentIndex].url})` }} className="display-image">
         <h6 className="destination-name">
-          {imagelist[currentIndex].name}
+          {cities[currentIndex].name}
         </h6>
 
         <div className="navigation-arrows">
@@ -40,16 +41,21 @@ function Slider(props) {
       </div>
 
       <div className="slider-index">
-        {imagelist.map((image, imageIndex) => (
+        {cities.map((city, cityIndex) => (
           <SliderIndex
-            imageIndex={imageIndex}
+            key={cityIndex}
+            cityIndex={cityIndex}
             handleSliderIndex={handleSliderIndex}
-            active={imageIndex === currentIndex}
+            active={cityIndex === currentIndex}
           />
         ))}
       </div>
     </div>
   );
+}
+
+Slider.propTypes = {
+  cities : PropTypes.array,
 }
 
 export default Slider;
